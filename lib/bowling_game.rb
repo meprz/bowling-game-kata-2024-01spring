@@ -7,13 +7,22 @@ class BowlingGame
   def roll(pins)
     @rolls[@current_roll] = pins
     @current_roll += 1
+    @current_roll += 1 if pins == 10
   end
 
   def score
     score = 0
     @rolls.each_with_index do |roll, i|
-      score += @rolls[i + 1] if at_end_of_frame?(i) && spare_frame?(i)
       score += roll
+      next if at_beginning_of_frame?(i)
+
+      # if spare_frame?(i)
+      #   score += @rolls[i + 1]
+      # elsif strike_frame?(i)
+      #   score += @rolls[i + 1] + @rolls[i + 2]
+      # end
+      score += @rolls[i + 1] if spare_frame?(i)
+      score += @rolls[i + 2] if strike_frame?(i)
     end
     score
   end
@@ -26,5 +35,13 @@ class BowlingGame
 
   def spare_frame?(i)
     @rolls[i] + @rolls[i - 1] == 10
+  end
+
+  def at_beginning_of_frame?(i)
+    i.even?
+  end
+
+  def strike_frame?(i)
+    @rolls[i - 1] == 10
   end
 end

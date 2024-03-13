@@ -22,4 +22,15 @@ RSpec.describe BowlingGame do
     # second frame: 13 + 3 + 0 = 16
     expect(game.score).to eq 16
   end
+
+  it 'should play one-strike game' do
+    game.roll 10
+    # skip second roll of first frame
+    game.roll 3
+    game.roll 4
+    16.times { game.roll 0 }
+    # first frame: 10 + 0 = 10 strike 10 + 3 + 4 = 17
+    # second frame: 17 + 3 + 4 = 24
+    expect(game.score).to eq 24
+  end
 end
