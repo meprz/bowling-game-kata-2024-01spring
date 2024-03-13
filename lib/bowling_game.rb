@@ -12,7 +12,7 @@ class BowlingGame
   def score
     score = 0
     @rolls.each_with_index do |roll, i|
-      score += @rolls[i + 1] if at_end_of_frame?(i) && roll + @rolls[i - 1] == 10
+      score += @rolls[i + 1] if at_end_of_frame?(i) && spare_frame?(i)
       score += roll
     end
     score
@@ -22,5 +22,9 @@ class BowlingGame
 
   def at_end_of_frame?(i)
     i.odd?
+  end
+
+  def spare_frame?(i)
+    @rolls[i] + @rolls[i - 1] == 10
   end
 end
