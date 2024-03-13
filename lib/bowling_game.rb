@@ -6,8 +6,8 @@ class BowlingGame
 
   def roll(pins)
     @rolls[@current_roll] = pins
+    @current_roll += 1 if pins == 10 && at_beginning_of_frame?(@current_roll)
     @current_roll += 1
-    @current_roll += 1 if pins == 10
   end
 
   def score

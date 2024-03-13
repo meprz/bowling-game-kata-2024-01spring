@@ -33,4 +33,17 @@ RSpec.describe BowlingGame do
     # second frame: 17 + 3 + 4 = 24
     expect(game.score).to eq 24
   end
+
+  it 'should handle spare with 10 on second roll' do
+    game.roll 0
+    game.roll 10
+    game.roll 3
+    17.times { game.roll 0 }
+    expect(game.score).to eq 16
+  end
+
+  xit 'should play a perfect game' do
+    12.times { game.roll 10 }
+    expect(game.score).to eq 300
+  end
 end
