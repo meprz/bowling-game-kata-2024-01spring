@@ -1,6 +1,6 @@
 class BowlingGame
   def initialize
-    @rolls = Array.new(21, 0)
+    @rolls = Array.new(30, 0)
     @current_roll = 0
   end
 
@@ -19,7 +19,7 @@ class BowlingGame
       score += @rolls[i + 1] if spare_frame?(i)
       next unless strike_frame?(i)
 
-      score += if strike_frame?(i + 2)
+      score += if strike_frame?(i + 2) && not_on_tenth_frame?(i)
                  @rolls[i + 3]
                else
                  @rolls[i + 2]

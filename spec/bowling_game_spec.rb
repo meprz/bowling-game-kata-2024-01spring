@@ -42,7 +42,7 @@ RSpec.describe BowlingGame do
     expect(game.score).to eq 16
   end
 
-  xit 'should play a perfect game' do
+  it 'should play a perfect game' do
     12.times { game.roll 10 }
     expect(game.score).to eq 300
   end
@@ -51,10 +51,10 @@ RSpec.describe BowlingGame do
     game.roll 10
     game.roll 10
     game.roll 5
-    # first frame: 10 + 10 + 5 = 25
-    # second frame: 25 + 10 + 5 + 0 = 40
-    # third frame: 40 + 5 + 0 = 45
     15.times { game.roll 0 }
+    # first frame: 10 + (10 + 5) = 25
+    # second frame: 25 + 10 + (5 + 0) = 40
+    # third frame: 40 + 5 + 0 = 45
     expect(game.score).to eq 45
   end
 end
