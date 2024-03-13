@@ -16,11 +16,6 @@ class BowlingGame
       score += roll
       next if at_beginning_of_frame?(i)
 
-      # if spare_frame?(i)
-      #   score += @rolls[i + 1]
-      # elsif strike_frame?(i)
-      #   score += @rolls[i + 1] + @rolls[i + 2]
-      # end
       score += @rolls[i + 1] if spare_frame?(i)
       score += @rolls[i + 2] if strike_frame?(i)
     end
@@ -29,16 +24,12 @@ class BowlingGame
 
   private
 
-  def at_end_of_frame?(i)
-    i.odd?
+  def at_beginning_of_frame?(i)
+    i.even?
   end
 
   def spare_frame?(i)
     @rolls[i] + @rolls[i - 1] == 10
-  end
-
-  def at_beginning_of_frame?(i)
-    i.even?
   end
 
   def strike_frame?(i)
