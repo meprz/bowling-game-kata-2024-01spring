@@ -57,4 +57,18 @@ RSpec.describe BowlingGame do
     # third frame: 40 + 5 + 0 = 45
     expect(game.score).to eq 45
   end
+
+  it 'should handle a nearly perfect game' do
+    11.times { game.roll 10 }
+    game.roll 9
+    expect(game.score).to eq 299
+  end
+
+  it 'should handle 9 strikes and a single spare in the last frame' do
+    9.times { game.roll 10 }
+    game.roll 9
+    game.roll 1
+    game.roll 1
+    expect(game.score).to eq 270
+  end
 end
