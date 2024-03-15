@@ -36,7 +36,7 @@ class BowlingGame
   end
 
   def spare_frame?(i)
-    @rolls[i] + @rolls[i - 1] == 10
+    @rolls[i] + @rolls[i - 1] == 10 && not_on_tenth_frame?(i)
   end
 
   def strike_frame?(i)
