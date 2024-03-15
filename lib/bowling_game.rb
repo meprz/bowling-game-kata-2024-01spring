@@ -19,11 +19,11 @@ class BowlingGame
       score += @rolls[i + 1] if spare_frame?(i)
       next unless strike_frame?(i)
 
-      if strike_frame?(i + 2)
-        score += @rolls[i + 3] if not_on_tenth_frame?(i)
-      else
-        score += @rolls[i + 2]
-      end
+      score +=  if strike_frame?(i + 2)
+                  @rolls[i + 3]
+                else
+                  @rolls[i + 2]
+                end
       # puts score
     end
     score
@@ -40,7 +40,7 @@ class BowlingGame
   end
 
   def strike_frame?(i)
-    @rolls[i - 1] == 10
+    @rolls[i - 1] == 10 && not_on_tenth_frame?(i)
   end
 
   def not_on_tenth_frame?(i)
